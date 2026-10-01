@@ -1,0 +1,318 @@
+:root {
+    --scale: 1;
+    --gold: #c4a468;
+    --gold-bright: #f1dca7;
+    --text: #d8d0c0;
+    --dim: rgba(216, 208, 192, 0.3);
+    --panel: rgba(10, 9, 8, 0.8);
+    --line: rgba(196, 164, 104, 0.35);
+    --ok: #7fbf6a;
+    --wait: #d9a441;
+    --bad: #d0533f;
+    --font: "Cormorant Garamond", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+html,
+body {
+    margin: 0;
+    background: transparent;
+    color: var(--text);
+    font-family: var(--font);
+    font-size: calc(16px * var(--scale));
+}
+
+/* ---------- Overlay ---------- */
+
+.overlay {
+    display: flex;
+    gap: 0.75em;
+    padding: 0.5em;
+    align-items: flex-start;
+}
+
+.overlay.column {
+    flex-direction: column;
+}
+
+.panel {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 0.3em;
+    padding: 0.6em 0.75em 0.7em;
+    min-width: 16em;
+    max-width: 26em;
+}
+
+.overlay.column .panel {
+    max-width: 34em;
+}
+
+.panel-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 0.35em;
+    margin-bottom: 0.5em;
+}
+
+.panel-title {
+    font-size: 1.15em;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--gold-bright);
+    white-space: nowrap;
+}
+
+.panel-slot {
+    font-size: 0.75em;
+    color: var(--dim);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.panel-goal {
+    margin-left: auto;
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+    color: var(--dim);
+    border: 1px solid transparent;
+    border-radius: 0.2em;
+    padding: 0 0.35em;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.panel-goal.lit {
+    color: #10100c;
+    background: var(--gold);
+}
+
+.panel-status {
+    display: flex;
+    align-items: center;
+    gap: 0.45em;
+    font-size: 0.85em;
+    margin-bottom: 0.45em;
+}
+
+.dot {
+    width: 0.55em;
+    height: 0.55em;
+    border-radius: 50%;
+    background: var(--dim);
+    flex: none;
+}
+
+.dot.connected { background: var(--ok); }
+.dot.connecting,
+.dot.retrying { background: var(--wait); }
+.dot.refused { background: var(--bad); }
+
+.checks {
+    font-variant-numeric: tabular-nums;
+}
+
+.status-text {
+    color: var(--dim);
+    font-size: 0.85em;
+}
+
+.area {
+    margin-left: auto;
+    color: var(--gold);
+    font-style: italic;
+    white-space: nowrap;
+}
+
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25em;
+    margin-top: 0.35em;
+}
+
+.chip {
+    position: relative;
+    font-family: inherit;
+    font-size: 0.78em;
+    color: var(--dim);
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 0.2em;
+    padding: 0.1em 0.4em;
+    cursor: pointer;
+    line-height: 1.35;
+}
+
+.chips.milestones .chip {
+    font-size: 0.95em;
+    padding: 0.15em 0.5em;
+}
+
+.chip.lit {
+    color: var(--gold-bright);
+    background: rgba(196, 164, 104, 0.18);
+    border-color: var(--gold);
+}
+
+/* Marked by hand rather than received from the server. */
+.chip.manual::after,
+.panel-goal.manual::after {
+    content: "";
+    position: absolute;
+    top: 0.15em;
+    right: 0.15em;
+    width: 0.3em;
+    height: 0.3em;
+    border-radius: 50%;
+    background: var(--gold-bright);
+}
+
+.panel-goal {
+    position: relative;
+}
+
+.chip.fresh {
+    animation: fresh 3s ease-out;
+}
+
+@keyframes fresh {
+    0% { box-shadow: 0 0 0.9em 0.25em rgba(241, 220, 167, 0.9); }
+    100% { box-shadow: 0 0 0 0 rgba(241, 220, 167, 0); }
+}
+
+.extras {
+    margin-top: 0.5em;
+    font-size: 0.75em;
+    color: var(--text);
+    line-height: 1.4;
+}
+
+.extras-label {
+    color: var(--dim);
+    margin-right: 0.3em;
+}
+
+/* ---------- Settings ---------- */
+
+.gear {
+    position: fixed;
+    right: 0.4em;
+    bottom: 0.4em;
+    font-size: 1.2em;
+    background: var(--panel);
+    color: var(--gold);
+    border: 1px solid var(--line);
+    border-radius: 0.3em;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+body:hover .gear {
+    opacity: 1;
+}
+
+.setup {
+    max-width: 34em;
+    margin: 1em auto;
+    padding: 1em 1.25em;
+    background: rgba(14, 13, 11, 0.96);
+    border: 1px solid var(--line);
+    border-radius: 0.3em;
+    display: grid;
+    gap: 0.75em;
+}
+
+.setup h1 {
+    margin: 0;
+    font-size: 1.5em;
+    font-variant: small-caps;
+    letter-spacing: 0.08em;
+    color: var(--gold-bright);
+}
+
+.setup fieldset {
+    border: 1px solid var(--line);
+    border-radius: 0.3em;
+    display: grid;
+    gap: 0.4em;
+}
+
+.setup legend {
+    color: var(--gold);
+    padding: 0 0.3em;
+}
+
+.setup label {
+    display: grid;
+    gap: 0.2em;
+}
+
+.setup label:has(> input[type="radio"]),
+.setup label:has(> input[type="checkbox"]) {
+    display: flex;
+    gap: 0.4em;
+    align-items: center;
+}
+
+.source-fields {
+    display: grid;
+    gap: 0.5em;
+}
+
+.setup input[type="text"],
+.setup input[type="password"],
+.setup input[type="number"],
+.setup select {
+    font: inherit;
+    font-family: system-ui, sans-serif;
+    font-size: 0.9em;
+    color: var(--text);
+    background: #1b1a17;
+    border: 1px solid #3a352c;
+    border-radius: 0.2em;
+    padding: 0.3em 0.4em;
+}
+
+.setup button {
+    font: inherit;
+    color: var(--text);
+    background: #24211c;
+    border: 1px solid var(--line);
+    border-radius: 0.2em;
+    padding: 0.3em 0.8em;
+    cursor: pointer;
+    justify-self: start;
+}
+
+.setup button.primary {
+    color: #10100c;
+    background: var(--gold);
+}
+
+.actions {
+    display: flex;
+    gap: 0.5em;
+}
+
+.slot-list {
+    display: grid;
+    gap: 0.25em;
+}
+
+.hint {
+    margin: 0;
+    font-size: 0.85em;
+    color: rgba(216, 208, 192, 0.6);
+}
+
+.hint.error {
+    color: var(--bad);
+}

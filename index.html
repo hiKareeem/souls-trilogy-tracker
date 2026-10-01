@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <!--
+        The browser enforces this policy: the page may only load its own files and may only
+        open network connections to archipelago.gg and to an Archipelago server on this PC.
+        To allow another server, add it to connect-src (see README).
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; connect-src https://archipelago.gg wss://archipelago.gg:* ws://localhost:* ws://127.0.0.1:*; base-uri 'none'; form-action 'none'">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Souls Trilogy Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="games.js" defer></script>
+    <script src="ap-client.js" defer></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <main id="overlay" class="overlay" hidden></main>
+
+    <button id="open-setup" class="gear" type="button" title="Settings">&#9881;</button>
+
+    <section id="setup" class="setup" hidden>
+        <h1>Souls Trilogy Tracker</h1>
+        <p class="hint">Tracks Dark Souls Remastered, Dark Souls II and Dark Souls III slots in one Archipelago room.
+            Read-only: it watches the room and never sends checks, items or chat.</p>
+
+        <fieldset>
+            <legend>Source</legend>
+            <label><input type="radio" name="source" value="room" checked> archipelago.gg room</label>
+            <label><input type="radio" name="source" value="server"> Other server</label>
+            <label><input type="radio" name="source" value="manual"> Manual only (no connection)</label>
+        </fieldset>
+
+        <div id="room-fields" class="source-fields">
+            <label>Room link
+                <input id="room" type="text" placeholder="https://archipelago.gg/room/..." autocomplete="off" spellcheck="false">
+            </label>
+            <button id="find-slots" type="button">Find Dark Souls slots</button>
+            <p id="room-msg" class="hint"></p>
+            <div id="room-slots" class="slot-list"></div>
+        </div>
+
+        <div id="server-fields" class="source-fields" hidden>
+            <label>Server (host:port)
+                <input id="server" type="text" placeholder="localhost:38281" autocomplete="off" spellcheck="false">
+            </label>
+            <label>Dark Souls Remastered slot name <input id="slot-ds1" type="text" autocomplete="off" spellcheck="false"></label>
+            <label>Dark Souls II slot name <input id="slot-ds2" type="text" autocomplete="off" spellcheck="false"></label>
+            <label>Dark Souls III slot name <input id="slot-ds3" type="text" autocomplete="off" spellcheck="false"></label>
+            <p class="hint">Leave a game blank to leave it out.</p>
+        </div>
+
+        <div id="password-field" class="source-fields">
+            <label>Room password (if any)
+                <input id="password" type="password" autocomplete="off">
+            </label>
+        </div>
+
+        <fieldset>
+            <legend>Look</legend>
+            <label>Layout
+                <select id="layout">
+                    <option value="row">Side by side</option>
+                    <option value="column">Stacked</option>
+                </select>
+            </label>
+            <label>Size <input id="scale" type="number" min="0.5" max="3" step="0.1" value="1"></label>
+            <label><input id="extras" type="checkbox"> Also list other progression items received</label>
+        </fieldset>
+
+        <div class="actions">
+            <button id="start" type="button" class="primary">Show tracker</button>
+            <button id="reset-marks" type="button">Clear manual marks</button>
+        </div>
+
+        <label>Link for OBS (paste into a Browser source)
+            <input id="obs-link" type="text" readonly>
+        </label>
+        <p id="setup-msg" class="hint"></p>
+        <p class="hint">Click an item on the tracker to mark it by hand (OBS: right-click the source &rarr; Interact).
+            Hand marks are saved in this browser and shown with a dot.</p>
+    </section>
+</body>
+</html>
