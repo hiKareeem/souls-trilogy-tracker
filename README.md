@@ -3,6 +3,8 @@
 One overlay for an [Archipelago](https://archipelago.gg) run of **Dark Souls Remastered, Dark Souls II and
 Dark Souls III**. It is a web page: add it to OBS as a Browser source. There is nothing to download or install.
 
+Live page: <https://hikareeem.github.io/souls-trilogy-tracker/>
+
 Per game it shows:
 
 - checks done out of the total, and whether the game's goal is complete
@@ -27,13 +29,15 @@ because the Archipelago server holds them.
 
 ## Setup
 
-1. Open the tracker page in a normal browser.
+1. Open the tracker page in a normal browser (the live page above, or your own copy; see below).
 2. Choose **archipelago.gg room**, paste the room link (`https://archipelago.gg/room/...`) and press
    **Find Dark Souls slots**. Untick any slot that is not yours. Enter the room password if there is one.
 3. Press **Show tracker** to check that it works, then copy **Link for OBS**. To get back to the settings, hover
    over the page and click the gear in the bottom-right corner.
 4. In OBS: **Sources → + → Browser**, paste the link as the URL. About **1400 × 600** fits the side-by-side
    layout at size 1; for **Stacked**, use about **460 × 1500**. The background is transparent.
+   Set **Page permissions** to **No access to OBS**: the tracker uses no OBS features. OBS's default for new
+   Browser sources lets a page read OBS status information.
 
 archipelago.gg puts a room to sleep after two hours without activity. Opening the room page wakes it up. Meanwhile the
 tracker keeps retrying by itself, and looks up the room's current port each time.
