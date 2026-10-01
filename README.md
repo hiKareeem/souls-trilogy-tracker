@@ -5,6 +5,8 @@ Dark Souls III**. It is a web page: add it to OBS as a Browser source. There is 
 
 Live page: <https://hikareeem.github.io/souls-trilogy-tracker/>
 
+**New to Archipelago?** [TRILOGY-GUIDE.md](TRILOGY-GUIDE.md) walks through setting up the whole trilogy run.
+
 Per game it shows:
 
 - checks done out of the total, and whether the game's goal is complete
@@ -27,7 +29,7 @@ because the Archipelago server holds them.
 - Settings are stored in the link after the `#`, which browsers never send to any server (GitHub included), or in the
   browser's local storage. If the room has a password, it is part of the OBS link, so treat the link like the password.
 
-## Setup
+## Tracker setup
 
 1. Open the tracker page in a normal browser (the live page above, or your own copy; see below).
 2. Choose **archipelago.gg room**, paste the room link (`https://archipelago.gg/room/...`) and press
